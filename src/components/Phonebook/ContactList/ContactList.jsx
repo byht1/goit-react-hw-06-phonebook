@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NameContacts, List, Elements, Button } from './ContactList.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteC } from 'redux/itemsContact';
+import { deleteC, getFilter, getItem } from 'redux/itemsContact';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.item);
-  const filter = useSelector(state => state.contacts.filter);
+  const contacts = useSelector(getItem);
+  const filter = useSelector(getFilter);
 
   function contactsFillet() {
     if (filter === '') {

@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Input, Span } from './Filter.styled';
-import { filterValue } from 'redux/itemsContact';
+import { filterValue, getFilter } from 'redux/itemsContact';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.contacts.filter);
+  const filter = useSelector(getFilter);
   return (
     <label htmlFor="filter">
       <Span>Find contacts by name</Span>

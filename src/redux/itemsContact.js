@@ -37,3 +37,8 @@ const persistConfig = {
 
 export const contactsReducer = persistReducer(persistConfig, contacts.reducer);
 export const { newContacts, deleteC, filterValue } = contacts.actions;
+
+// Select
+
+export const getItem = state => state.contacts.item;
+export const getFilter = state => state.contacts.filter;

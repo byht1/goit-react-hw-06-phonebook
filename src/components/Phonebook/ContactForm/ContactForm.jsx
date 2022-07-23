@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Span, Input, Button, Form } from './ContactForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterValue, newContacts } from 'redux/itemsContact';
+import { filterValue, getItem, newContacts } from 'redux/itemsContact';
 
 const INITIAL_STATE = {
   name: '',
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 export default function ContactForm() {
   const [{ name, number }, setState] = useState(INITIAL_STATE);
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.item);
+  const contacts = useSelector(getItem);
 
   function onChange(eve) {
     const { name, value } = eve.target;
