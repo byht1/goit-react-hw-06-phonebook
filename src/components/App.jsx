@@ -2,6 +2,7 @@ import { Filter } from './Phonebook/Filter/Filter';
 import ContactForm from './Phonebook/ContactForm/ContactForm';
 import ContactList from './Phonebook/ContactList/ContactList';
 import { Section, Containet, H1, DivList } from './App.stiled';
+// import { useEffect } from 'react';
 
 // const L_KEY = 'contacts-list';
 // const contactsList = [
