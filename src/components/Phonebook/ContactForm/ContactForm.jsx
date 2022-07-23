@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
 import { Span, Input, Button, Form } from './ContactForm.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { filterValue, newContacts } from 'redux/itemsContact';
 
 const INITIAL_STATE = {
   name: '',
   number: '',
 };
 
-export default function ContactForm({ newC }) {
+export default function ContactForm() {
   const [{ name, number }, setState] = useState(INITIAL_STATE);
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.item);
 
   function onChange(eve) {
     const { name, value } = eve.target;
@@ -18,16 +21,21 @@ export default function ContactForm({ newC }) {
 
   function onSubmit(eve) {
     eve.preventDefault();
-    const newContacts = {
+    const newC = {
       id: nanoid(5),
       name,
       number,
     };
-    const isUnique = newC(newContacts);
 
-    if (isUnique) {
-      setState({ ...INITIAL_STATE });
+    if (contacts.some(x => x.name === newC.name)) {
+      alert(`${newC.name} is already is contacts`);
+      return;
     }
+
+    dispatch(newContacts(newC));
+    dispatch(filterValue(''));
+
+    setState({ ...INITIAL_STATE });
   }
 
   return (
@@ -64,7 +72,3 @@ export default function ContactForm({ newC }) {
     </Form>
   );
 }
-
-ContactForm.propTypes = {
-  newC: PropTypes.func.isRequired,
-};
